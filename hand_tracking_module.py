@@ -70,6 +70,10 @@ class HandDetector:
         return landmark_list
 
 
+def fingers_up(self):
+    pass
+
+
 # To use the code, copy everything in the main function and import the necessary things
 def main():
     # Time variables for calculating FPS
