@@ -31,5 +31,14 @@ while True:
         # x2, y2 will be the coordinates of the middle finger tip
         x2, y2 = landmarks_list[12][1:]
 
+        # Getting list of fingers that are up
+        fingers = detector.fingers_up()
+
+        if fingers[1] and fingers[2]:
+            print("Selection mode activated")
+
+        if fingers[1] and fingers[2] == False:
+            print("Drawing mode activated")
+
     cv2.imshow("Image", img)
     cv2.waitKey(1)
