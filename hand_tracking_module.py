@@ -62,13 +62,13 @@ class HandDetector:
 
                 self.landmark_list.append([id, centre_x, centre_y])
 
-                if draw:
-                    # Testing by drawing circles on the specified landmarks
-                    # 0 is the bottom of the hand, 4 is the tip of the thumb
-                    if id == 0:
-                        cv2.circle(img, (centre_x, centre_y), 25, (255, 0, 255), cv2.FILLED)
-                    elif id == 4:
-                        cv2.circle(img, (centre_x, centre_y), 25, (255, 0, 255), cv2.FILLED)
+                # if draw:
+                #     # Testing by drawing circles on the specified landmarks
+                #     # 0 is the bottom of the hand, 4 is the tip of the thumb
+                #     if id == 0:
+                #         cv2.circle(img, (centre_x, centre_y), 25, (255, 0, 255), cv2.FILLED)
+                #     elif id == 4:
+                #         cv2.circle(img, (centre_x, centre_y), 25, (255, 0, 255), cv2.FILLED)
 
         return self.landmark_list
 
@@ -79,7 +79,7 @@ class HandDetector:
         # Code for the thumb is different since it's not like the other fingers
         # If the tip is to the right of the lower knuckle, we can say the thumb is up
         # Have yet to check for handedness
-        if self.landmarks_list[self.tip_ids[0]][1] > self.landmarks_list[self.tip_ids[0] - 1][1]:
+        if self.landmark_list[self.tip_ids[0]][1] > self.landmark_list[self.tip_ids[0] - 1][1]:
             fingers.append(1)
         else:
             fingers.append(0)
@@ -88,12 +88,12 @@ class HandDetector:
             # Get the y value of fingertips and their corresponding lower knuckles
             # If the tip is above the lower knuckle, we can say it's up
             # Then append it to the fingers list
-            if self.landmarks_list[self.tip_ids[id]][2] < self.landmarks_list[self.tip_ids[id] - 2][2]:
+            if self.landmark_list[self.tip_ids[id]][2] < self.landmark_list[self.tip_ids[id] - 2][2]:
                 fingers.append(1)
             else:
                 fingers.append(0)
 
-            return fingers
+        return fingers
 
 
 # To use the code, copy everything in the main function and import the necessary things
